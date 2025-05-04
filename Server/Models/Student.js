@@ -27,7 +27,36 @@ const Student = User.discriminator('student', new mongoose.Schema({
   currentSemester: {
     type: Number,
     required: true
-  }
+  },
+  enrolledCourses: [{
+    courseOffering: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'CourseOffering'
+    },
+    status: {
+      type: String,
+      enum: ['active', 'completed', 'dropped', 'failed'],
+      default: 'active'
+    }
+  }],
+  academicRecord: [{
+    semester: Number,
+    gpa: Number,
+    totalCredits: Number,
+    academicSession: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'AcademicSession'
+    }
+  }],
+  attendance: [{
+    courseOffering: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'CourseOffering'
+    },
+    present: Number,
+    absent: Number,
+    percentage: Number
+  }]
 }));
 
 export default Student;

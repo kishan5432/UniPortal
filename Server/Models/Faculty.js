@@ -32,6 +32,16 @@ const Faculty = User.discriminator('faculty', new mongoose.Schema({
   joiningDate: {
     type: Date,
     default: Date.now
+  },
+  salary: {
+    type: Number,
+    default: 0
+  },
+  bankDetails: {
+    accountNumber: String,
+    bankName: String,
+    ifscCode: String,
+    accountType: String
   }
 }));
 

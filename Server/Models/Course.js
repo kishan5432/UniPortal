@@ -40,7 +40,19 @@ const CourseSchema = new mongoose.Schema({
   updatedAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  guardianInfo: {
+    name: String,
+    relationship: String,
+    contactNumber: String,
+    email: String
+  },
+  dateOfBirth: Date,
+  gender: {
+    type: String,
+    enum: ['male', 'female', 'other', 'prefer not to say']
+  },
+  bloodGroup: String,
 });
 
 const Course = mongoose.model('Course', CourseSchema);

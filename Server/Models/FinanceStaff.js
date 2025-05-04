@@ -14,7 +14,8 @@ const FinanceStaff = User.discriminator('finance', new mongoose.Schema({
   permissions: {
     type: [String],
     default: ['view', 'create', 'update']
-  }
+  },
+  joiningDate: Date
 }));
 
 export default FinanceStaff;

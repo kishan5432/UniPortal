@@ -14,7 +14,8 @@ const TNPStaff = User.discriminator('tnp', new mongoose.Schema({
   responsibilities: {
     type: [String],
     default: []
-  }
+  },
+  joiningDate: Date
 }));
 
 export default TNPStaff;

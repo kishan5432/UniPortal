@@ -14,7 +14,8 @@ const LibraryStaff = User.discriminator('library', new mongoose.Schema({
   permissions: {
     type: [String],
     default: ['view', 'issue', 'return']
-  }
+  },
+  joiningDate: Date
 }));
 
 export default LibraryStaff;
