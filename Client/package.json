@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.11",
+    "@radix-ui/react-slot": "^1.2.0",
     "@tailwindcss/vite": "^4.1.5",
     "antd": "^5.24.9",
     "axios": "^1.9.0",

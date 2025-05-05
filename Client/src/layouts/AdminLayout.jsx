@@ -52,7 +52,7 @@ const AdminLayout = () => {
     console.log("Logging out...");
     localStorage.removeItem("erpToken");
     delete axios.defaults.headers.common["Authorization"];
-    navigate("/login");
+    navigate("/");
     setDropdownOpen(false);
     setSidebarOpen(false);
     setActiveTab("dashboard"); // Reset to default tab on logout

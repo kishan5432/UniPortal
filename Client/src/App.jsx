@@ -70,6 +70,7 @@ import StudentLayout from "./layouts/StudentLayout";
 import LibraryLayout from "./layouts/LibraryLayout";
 import TNPLayout from "./layouts/TNPLayout";
 import FinanceLayout from "./layouts/FinanceLayout";
+import Home from "./pages/common/Home";
 
 function App() {
   return (
@@ -81,7 +82,7 @@ function App() {
           <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
           {/* Redirect root to login */}
-          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/" element={<Home />} />
 
           {/* Admin Routes */}
           <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>

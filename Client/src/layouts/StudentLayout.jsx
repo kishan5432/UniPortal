@@ -325,6 +325,7 @@ import Profile from "../pages/student/Profile";
 import Communication from "../pages/student/Communication";
 import Dashboard from "../pages/student/Dashboard";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const navItems = [
   { id: "dashboard", label: "Dashboard", icon: Home },
@@ -344,6 +345,8 @@ export default function StudentLayout() {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const { currentUser, logout } = useAuth();
   const [currentTime, setCurrentTime] = useState(new Date());
+
+  const navigate = useNavigate();
 
   // Update time every minute
   useEffect(() => {
@@ -378,8 +381,7 @@ export default function StudentLayout() {
   const handleLogout = async () => {
     try {
       await logout();
-      // You might need to redirect to login page here
-      // using a router if you're using one
+      navigate("/");
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -645,16 +647,7 @@ export default function StudentLayout() {
                         <User size={16} />
                         <span>My Profile</span>
                       </button>
-                      <button
-                        className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center gap-2"
-                        onClick={() => {
-                          setActiveTab("settings");
-                          setProfileMenuOpen(false);
-                        }}
-                      >
-                        <FileText size={16} />
-                        <span>Account Settings</span>
-                      </button>
+
                       <hr className="my-1 border-gray-200" />
                       <button
                         className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 flex items-center gap-2"
