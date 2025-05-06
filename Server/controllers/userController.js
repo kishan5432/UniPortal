@@ -57,7 +57,14 @@ const createRoleSpecificUser = async (userData, role) => {
       });
   }
   
-  return await user.save();
+  try {
+    
+    return await user.save();
+    
+  } catch (error) {
+    console.error(`Error creating ${role} user:`, error);
+    throw error;
+  }
 };
 
 // Get all users
@@ -114,6 +121,7 @@ export const createUser = async (req, res) => {
     ...roleSpecificData
   } = req.body;
   
+  
   try {
     // Check if user already exists
     let existingUser = await User.findOne({ email });
@@ -142,6 +150,7 @@ export const createUser = async (req, res) => {
       address: address || {},
       ...roleSpecificData
     };
+    console.log(userData);
     
     // Create and save the user based on role
     const user = await createRoleSpecificUser(userData, role);
