@@ -1,9 +1,13 @@
-
-
+import models from '../Models/index.js';
+import mongoose from "mongoose"
+// import Faculty from "../Models/Faculty.js";
 import AcademicSession from "../Models/AcademicSession.js";
 import CourseOffering from "../Models/CourseOffering.js";
-import Faculty from "../Models/Faculty.js";
+
+
 import Department from "../Models/Department.js";
+
+const Faculty = models.Faculty;
 
 // ========== Academic Sessions ==========
 export const getAcademicSessions = async (req, res) => {
@@ -57,10 +61,16 @@ export const toggleAcademicSessionStatus = async (req, res) => {
 // ========== Course Offerings ==========
 export const getCourseOfferings = async (req, res) => {
   try {
+    console.log('Available models:', Object.keys(mongoose.models));
     const offerings = await CourseOffering.find()
+      
       .populate("course")
       .populate("academicSession")
-      .populate("faculty");
+      .populate({
+        path: "faculty",
+        model: "faculty"
+      });
+      
     res.status(200).json(offerings);
   } catch (err) {
     console.error("Error fetching course offerings:", err);

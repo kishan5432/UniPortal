@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import User from '../Models/User.js'; // Import the base User model
 
-const Faculty = User.discriminator('faculty', new mongoose.Schema({
+const Faculty = mongoose.models.faculty || User.discriminator('faculty', new mongoose.Schema({
   facultyId: {
     type: String,
     required: true,
@@ -44,5 +44,6 @@ const Faculty = User.discriminator('faculty', new mongoose.Schema({
     accountType: String
   }
 }));
+
 
 export default Faculty;
