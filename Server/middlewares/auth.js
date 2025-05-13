@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import User from '../Models/User.js';
+import { request } from 'express';
 
 
 
@@ -70,8 +71,12 @@ import User from '../Models/User.js';
     console.log(decoded);
 
     const currentUser = await User.findById(decoded.id);
+
+    console.log("auth called")
+
     
     req.user = currentUser;
+    console.log(req.user);
     next();
   } catch (err) {
     res.status(401).json({ message: 'Token is not valid' });

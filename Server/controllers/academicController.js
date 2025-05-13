@@ -1,13 +1,13 @@
-import models from '../Models/index.js';
+
 import mongoose from "mongoose"
-// import Faculty from "../Models/Faculty.js";
+import Faculty from "../Models/Faculty.js";
 import AcademicSession from "../Models/AcademicSession.js";
 import CourseOffering from "../Models/CourseOffering.js";
 
 
 import Department from "../Models/Department.js";
 
-const Faculty = models.Faculty;
+
 
 // ========== Academic Sessions ==========
 export const getAcademicSessions = async (req, res) => {
@@ -92,6 +92,11 @@ export const createCourseOffering = async (req, res) => {
 export const deleteCourseOffering = async (req, res) => {
   try {
     const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid course offering ID." });
+    }
+
     await CourseOffering.findByIdAndDelete(id);
     res.status(200).json({ message: "Course offering deleted successfully" });
   } catch (err) {

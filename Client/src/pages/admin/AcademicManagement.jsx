@@ -561,6 +561,141 @@ function CourseOfferingsTab() {
         setError("Failed to load data. Please try again later.");
 
         // For demo purposes, add some sample data
+        setCourseOfferings([
+          {
+            _id: "1",
+            course: {
+              _id: "101",
+              name: "Introduction to Computer Science",
+              code: "CS101",
+            },
+            academicSession: { _id: "1", name: "Fall 2025" },
+            faculty: { _id: "201", firstName: "John", lastName: "Smith" },
+            schedule: [
+              {
+                day: "monday",
+                startTime: "10:00",
+                endTime: "12:00",
+                room: "A101",
+              },
+              {
+                day: "wednesday",
+                startTime: "10:00",
+                endTime: "12:00",
+                room: "A101",
+              },
+            ],
+            maxStudents: 60,
+            enrolledStudents: [],
+            waitlistedStudents: [],
+          },
+          {
+            _id: "2",
+            course: { _id: "102", name: "Data Structures", code: "CS201" },
+            academicSession: { _id: "1", name: "Fall 2025" },
+            faculty: { _id: "202", firstName: "Jane", lastName: "Doe" },
+            schedule: [
+              {
+                day: "tuesday",
+                startTime: "14:00",
+                endTime: "16:00",
+                room: "B202",
+              },
+              {
+                day: "thursday",
+                startTime: "14:00",
+                endTime: "16:00",
+                room: "B202",
+              },
+            ],
+            maxStudents: 40,
+            enrolledStudents: [],
+            waitlistedStudents: [],
+          },
+          {
+            _id: "3",
+            course: { _id: "103", name: "Database Systems", code: "CS301" },
+            academicSession: { _id: "2", name: "Spring 2025" },
+            faculty: { _id: "203", firstName: "Robert", lastName: "Johnson" },
+            schedule: [
+              {
+                day: "monday",
+                startTime: "14:00",
+                endTime: "16:00",
+                room: "C303",
+              },
+              {
+                day: "friday",
+                startTime: "14:00",
+                endTime: "16:00",
+                room: "C303",
+              },
+            ],
+            maxStudents: 30,
+            enrolledStudents: [],
+            waitlistedStudents: [],
+          },
+        ]);
+
+        // setAcademicSessions([
+        //   { _id: "1", name: "Fall 2025", isActive: true },
+        //   { _id: "2", name: "Spring 2025", isActive: false },
+        //   { _id: "3", name: "Summer 2025", isActive: false },
+        // ]);
+
+        // setFaculty([
+        //   {
+        //     _id: "201",
+        //     firstName: "John",
+        //     lastName: "Smith",
+        //     department: { _id: "301", name: "Computer Science" },
+        //   },
+        //   {
+        //     _id: "202",
+        //     firstName: "Jane",
+        //     lastName: "Doe",
+        //     department: { _id: "301", name: "Computer Science" },
+        //   },
+        //   {
+        //     _id: "203",
+        //     firstName: "Robert",
+        //     lastName: "Johnson",
+        //     department: { _id: "302", name: "Mathematics" },
+        //   },
+        // ]);
+
+        // setCourses([
+        //   {
+        //     _id: "101",
+        //     name: "Introduction to Computer Science",
+        //     code: "CS101",
+        //     department: { _id: "301", name: "Computer Science" },
+        //   },
+        //   {
+        //     _id: "102",
+        //     name: "Data Structures",
+        //     code: "CS201",
+        //     department: { _id: "301", name: "Computer Science" },
+        //   },
+        //   {
+        //     _id: "103",
+        //     name: "Database Systems",
+        //     code: "CS301",
+        //     department: { _id: "301", name: "Computer Science" },
+        //   },
+        //   {
+        //     _id: "104",
+        //     name: "Calculus I",
+        //     code: "MATH101",
+        //     department: { _id: "302", name: "Mathematics" },
+        //   },
+        // ]);
+
+        // setDepartments([
+        //   { _id: "301", name: "Computer Science", code: "CS" },
+        //   { _id: "302", name: "Mathematics", code: "MATH" },
+        //   { _id: "303", name: "Physics", code: "PHYS" },
+        // ]);
       } finally {
         setLoading(false);
       }
@@ -650,6 +785,22 @@ function CourseOfferingsTab() {
     } catch (err) {
       console.error("Error creating course offering:", err);
       setError("Failed to create course offering. Please try again.");
+    }
+  };
+
+  //delete offering
+
+  const handleDeleteOffering = async (id) => {
+    try {
+      const response = await axios.delete(
+        `${API_BASE_URL}/academic/course-offerings/${id}`
+      );
+      setCourseOfferings(courseOfferings.filter((course) => course._id !== id));
+      console.log(response.data.message);
+      alert(response.data.message);
+    } catch (error) {
+      console.error("Error deleting course offering:", error);
+      setError("Failed to delete course offering. Please try again.");
     }
   };
 
@@ -983,8 +1134,17 @@ function CourseOfferingsTab() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <div className="text-sm">
+                  <div className=" text-sm">
                     Max Students: {offering.maxStudents}
+                  </div>
+                  <div className="flex justify-end">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleDeleteOffering(offering._id)}
+                    >
+                      <Trash2 className="h-4 w-4 mr-1" /> Delete
+                    </Button>
                   </div>
                 </CardFooter>
               </Card>

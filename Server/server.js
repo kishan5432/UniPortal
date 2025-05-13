@@ -7,6 +7,7 @@ import userRoutes from './routes/userRoutes.js';
 import departmentRoutes from './routes/departmentRoutes.js';
 import courseRoutes from './routes/courseRoutes.js';
 import academicRoutes from './routes/academicRoutes.js'
+import facultycourseRoutes from "./routes/facultycourseRoutes.js"
 
 const PORT =  process.env.PORT || 4000;
 const app = express ();
@@ -21,6 +22,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/departments", departmentRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/academic", academicRoutes);
+app.use("/api/faculty-course", facultycourseRoutes)
 
 
 await connectDB();
