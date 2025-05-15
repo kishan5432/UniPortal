@@ -11,9 +11,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  build: {
-    rollupOptions: {
-      external: ['react-day-picker']
-    }
-  }
+  // build: {
+  //   rollupOptions: {
+  //     external: ['react-day-picker']
+  //   }
+  // }
 })
