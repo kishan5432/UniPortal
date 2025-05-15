@@ -58,7 +58,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
+// import { Calendar } from "@/components/ui/calendar";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -665,7 +665,7 @@ const StudentAssessment = () => {
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0">
-                          <Calendar
+                          {/* <Calendar
                             mode="single"
                             selected={newAssessment.dueDate}
                             onSelect={(date) =>
@@ -674,7 +674,7 @@ const StudentAssessment = () => {
                                 dueDate: date,
                               })
                             }
-                          />
+                          /> */}
                         </PopoverContent>
                       </Popover>
                     </div>
@@ -805,13 +805,13 @@ const StudentAssessment = () => {
                           </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-auto p-0">
-                          <Calendar
+                          {/* <Calendar
                             mode="single"
                             selected={attendanceData.date}
                             onSelect={(date) =>
                               setAttendanceData({ ...attendanceData, date })
                             }
-                          />
+                          /> */}
                         </PopoverContent>
                       </Popover>
                       <div className="flex gap-2">
